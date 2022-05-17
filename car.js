@@ -1,4 +1,4 @@
-class Car{
+class Car {
 	constructor(x, y, width, height){
 		this.x = x;
 		this.y = y;
@@ -14,6 +14,7 @@ class Car{
 		this.rotateStep = 0.03;
 
 		this.controls = new Controls();
+		this.sensor = new Sensor(this);
 	}
 
 	draw(ctx) {
@@ -31,10 +32,13 @@ class Car{
 		ctx.fill();
 
 		ctx.restore();
+
+		this.sensor.draw(ctx);
 	}
 
 	update() {
-		this.#move()
+		this.#move();
+		this.sensor.update();
 	}
 
 	#move() {
